@@ -811,45 +811,13 @@ Vector<N - 1, Real> Project(Vector<N, Real> const& v, int32_t reject)
   
 	   }
 
-	   double DistanceSegmentPricise(Segment<3, double>& segment_1, Segment<3, double>& segment_2)
-	   {
-	       
-		   auto Dot_1=DotProduct(segment_1.p[1],segment_1.p[1]);
-		   auto Dot_2 = DotProduct(segment_2.p[1], segment_2.p[1]);
-		   auto Dot_3=DotProduct(segment_1.p[1],segment_2.p[1]);
-		   auto seg_dif=segment_2.p[0]-segment_1.p[0];
+	    
 
-	   }
 
       
 	   double DistanceSegment(Segment<3, double>& segment_1, Segment<3, double>& segment_2)
 	   {
-	       
-		   auto origin_diff_1=segment_2.p[1]-segment_1.p[0];
-		   auto origin_diff_2 = segment_1.p[1] - segment_2.p[0];
-		   auto segment_1_diff=segment_1.p[1]-segment_1.p[0];
-		   auto segment_2_diff = segment_2.p[1] - segment_2.p[0];
-		   		   
-		   auto Cross_1=Cross(origin_diff_1,origin_diff_2);
-		   		   		   
-		   auto dot_1 = DotProduct(origin_diff_1, Cross_1)/Lenght(Cross_1);
-		   auto dot_2=DotProduct(origin_diff_2,Cross_1)/Lenght(Cross_1);
-		   
-		   return Lenght(segment_2.p[1] * dot_2 - segment_1.p[1] * dot_1);
-		              
-		   auto uit=DotProduct((segment_2.p[0]-segment_1.p[0]),Cross(segment_1.p[1],segment_2.p[1])/Lenght(Cross(segment_1.p[1],segment_2.p[1])));
-
-		   /*auto cross_dist_vector=Cross(segment_1.p[1],segment_2.p[1]);
-
-		   auto cross_dest_1=Cross(origin_diff,segment_2.p[1]);
-		   auto  cross_dest_2 = Cross(origin_diff, segment_1.p[1]);
-
-		   double t1=DotProduct(cross_dest_1,cross_dist_vector)/std::sqrt(DotProduct(cross_dist_vector,cross_dist_vector));
-		   double t2=DotProduct(cross_dest_2,cross_dist_vector)/std::sqrt(DotProduct(cross_dist_vector,cross_dist_vector));
-
-
-		   return Lenght(segment_2.p[1] * t2 - segment_1.p[1] * t1);*/
-		   		  
+	       		  		   		  
 			auto dp = segment_2.p[0] - segment_1.p[0];
 			auto v12 = DotProduct(segment_1.p[1], segment_1.p[1]);
 			auto v22 = DotProduct(segment_2.p[1], segment_2.p[1]);
