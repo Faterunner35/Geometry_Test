@@ -23,7 +23,7 @@ class Matrix
 	
    }
 
- void SetRow(uint32_t rowNum, std::vector<T>data)
+ void SetRow(uint32_t rowNum,  const std::vector<T>&data)
  {
 	 if (RowSize <= data.size())
 

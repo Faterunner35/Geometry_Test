@@ -1,2 +1,25 @@
 ﻿  SegmentTest.cpp
+C:\Users\fater\source\repos\SegmentTest\SegmentTest\Geomerty.h(1225,13): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=double
+          ]
+C:\Users\fater\source\repos\SegmentTest\SegmentTest\Geomerty.h(1207,6): message : while compiling class template member function 'bool Geom_Exp::GeomCore<3,double>::TriangleIntersection(std::array<Geom_Exp::Vector<3,double>,3>,std::array<Geom_Exp::Vector<3,double>,3>) const'
+C:\Users\fater\source\repos\SegmentTest\SegmentTest\SegmentTest.cpp(15,14): message : see the first reference to 'Geom_Exp::GeomCore<3,double>::TriangleIntersection' in 'main'
+C:\Users\fater\source\repos\SegmentTest\SegmentTest\SegmentTest.cpp(9,29): message : see reference to class template instantiation 'Geom_Exp::GeomCore<3,double>' being compiled
+C:\Users\fater\source\repos\SegmentTest\SegmentTest\Geomerty.h(1225,45): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=double
+          ]
+C:\Users\fater\source\repos\SegmentTest\SegmentTest\Geomerty.h(1226,13): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=double
+          ]
+C:\Users\fater\source\repos\SegmentTest\SegmentTest\Geomerty.h(1226,45): warning C4244: 'initializing': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=double
+          ]
   SegmentTest.vcxproj -> C:\Users\fater\source\repos\SegmentTest\x64\Debug\SegmentTest.exe

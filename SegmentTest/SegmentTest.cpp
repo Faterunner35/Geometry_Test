@@ -1,24 +1,26 @@
 // SegmentTest.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
-
 #include <iostream>
 #include "Geomerty.h"
 #include"Matrix.h"
 
 int main()
 {   
-   Geom_Exp::Vector<3,double> v1({0.025,1.3,-4.5667});
-   Geom_Exp::Vector<3, double> v2({ 2.025,-3.5,4.2334 });
-   Geom_Exp::Vector<3, double> v3({ 34.025,-6.67,45.5667 });
-   Geom_Exp::Vector<3, double> v4({-10.025,7.5,42.2334 });
-   Geom_Exp::Segment<3,double> sg_1{v1,v2};
-   Geom_Exp::Segment<3, double> sg_2{ v3,v4 };
-
-   Geom_Exp::GeomCore<3,double>core;
+Geom_Exp::GeomCore<3,double>core;
     
-   auto dist_1=core.ProjectPointOnSegment(sg_1,v3);
-   auto dist_2=core.DistanceSegment(sg_1,sg_2);
+auto triangles_array= Geom_Exp::readTrianglesFromFile<double>("D:/Triangles.txt");
 
+ for (int i = 0; i < triangles_array.size()-1; i+=2)
+ {
+	 bool result=core.TriangleIntersection(triangles_array[i].GetArray(), triangles_array[i+1].GetArray());
+	 if(result)
+		 std::cout << "Test number" << i + 1 << "Passed"<< std::endl;
+		 else
+		 std::cout << "Test number" << i + 1 << "Failed" << std::endl;
+	
+  }
+     
+     
     return 0;
 }
 
