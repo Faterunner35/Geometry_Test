@@ -289,7 +289,7 @@ T DotProduct(const Vector<N,T>& v0, const Vector<N,T>& v1)
 {
     
 	T dot=v0[0]*v1[0];
-	for (int i = 0; i < N; i++)
+	for (int i = 1; i < N; i++)
 	{
 		dot+=v0[i]*v1[i];
 	}
@@ -690,6 +690,9 @@ Vector<N - 1, Real> Project(Vector<N, Real> const& v, int32_t reject)
 			triangle_data[0] = v0;
 			triangle_data[1] = v1;
 			triangle_data[2] = v2;
+
+			normal = Cross(triangle_data[1] - triangle_data[0], triangle_data[2] - triangle_data[0]);
+			Normalize(normal);
 		}
 
 
@@ -765,7 +768,7 @@ Vector<N - 1, Real> Project(Vector<N, Real> const& v, int32_t reject)
 			// Read 9 values for the 3 vertices of the triangle
 			if (!(iss >> local_arr[0] >>local_arr[1] >> local_arr[2] >>
 				local_arr_2[0] >> local_arr_2[1] >> local_arr_2[2] >>
-				local_arr_3[0] >> local_arr[1] >>local_arr_3[2])) {
+				local_arr_3[0] >> local_arr_3[1] >>local_arr_3[2])) {
 				std::cerr << "Error: Invalid line format: " << line << "\n";
 				continue; // Skip invalid lines
 			}
@@ -1176,7 +1179,7 @@ bool Intersects(std::array<Vector<3, double>, 3> U,
 bool TriangleIntersection ( std::array<Vector<3,double>,3> tri_1,std::array<Vector<3,double>,3> tri_2) const
 {
 	Vector<3,double> S0[2], S1[2];
-	if (Intersects(tri_1, tri_2, S0) && Intersects(tri_1,tri_2, S1))
+	if (Intersects(tri_1, tri_2, S0) && Intersects(tri_2,tri_1, S1))
 	{
 		// Theoretically, the segments lie on the same line.  A direction D
 		// of the line is the Cross(NormalOf(U),NormalOf(V)).  We choose the
