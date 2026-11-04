@@ -74,6 +74,12 @@ Test number9Failed
 
 `Passed` means the pair intersects and `Failed` means it does not. The number is the 1-based index of the pair's first triangle (1, 3, 5, …), not counting comment lines. The CTest test `triangle_pairs` checks exactly this output.
 
+## Credits
+
+Parts of `SegmentTest/Geomerty.h` are adapted from David Eberly's [Geometric Tools](https://www.geometrictools.com) (GTE): the segment–segment closest-point query (its region-based case analysis) and the structure of the triangle–triangle intersection test follow the GTE implementations. Geometric Tools is distributed under the [Boost Software License 1.0](https://www.boost.org/LICENSE_1_0.txt), which asks that its copyright notice be kept with derived code:
+
+> David Eberly, Geometric Tools, Redmond WA 98052 — Copyright (c) 1998-2023. Distributed under the Boost Software License, Version 1.0.
+
 ## Status
 
 Known limitations of the current code, left as they are:
