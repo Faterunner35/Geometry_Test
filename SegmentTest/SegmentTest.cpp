@@ -1,16 +1,19 @@
 // SegmentTest.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 #include <iostream>
+#include <string>
 #include "Geomerty.h"
 #include"Matrix.h"
 
-int main()
+int main(int argc, char* argv[])
 {   
 Geom_Exp::GeomCore<3,double>core;
-    
-auto triangles_array= Geom_Exp::readTrianglesFromFile<double>("D:/Triangles.txt");
 
- for (int i = 0; i < triangles_array.size()-1; i+=2)
+// Input file: first command-line argument; the original hard-coded path is kept as the default.
+const std::string input_path = (argc > 1) ? argv[1] : "D:/Triangles.txt";
+auto triangles_array= Geom_Exp::readTrianglesFromFile<double>(input_path);
+
+ for (size_t i = 0; i + 1 < triangles_array.size(); i+=2)
  {
 	 bool result=core.TriangleIntersection(triangles_array[i].GetArray(), triangles_array[i+1].GetArray());
 	 if(result)

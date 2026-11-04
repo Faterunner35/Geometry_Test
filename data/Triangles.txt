@@ -1,0 +1,24 @@
+# Sample input for SegmentTest.
+# One triangle per line: x0 y0 z0  x1 y1 z1  x2 y2 z2
+# Lines are taken in pairs; each pair (lines 1-2, 3-4, ...) is one test.
+# Blank lines and lines starting with '#' are skipped.
+
+# Pair 1: the second triangle pierces the first one -> intersect
+0 0 0   2 0 0   0 2 0
+0.5 0.5 -1   0.5 0.5 1   1.0 0.2 1
+
+# Pair 2: parallel planes, z = 0 and z = 5 -> no intersection
+0 0 0   2 0 0   0 2 0
+0 0 5   2 0 5   0 2 5
+
+# Pair 3: the planes cross along x = 10, which misses the first triangle -> no intersection
+0 0 0   2 0 0   0 2 0
+10 0 -1   10 0 1   10 1 0
+
+# Pair 4: two tilted triangles crossing each other -> intersect
+0 0 0   4 1 0   1 4 2
+1 1 -2   2 2 3   3 0 1
+
+# Pair 5: tilted triangles whose planes cross outside both of them -> no intersection
+0 0 0   1 0 0   0 1 1
+5 5 -1   6 5 1   5 6 0
