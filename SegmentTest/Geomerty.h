@@ -7,6 +7,10 @@
 #include<fstream>
 #include<string>
 #include<sstream>
+#include<cstdint>
+#include<cmath>
+#include<cfloat>
+#include<initializer_list>
 
 
 namespace Geom_Exp
@@ -27,7 +31,7 @@ class Vector
 	Vector(std::initializer_list<T>&data)
 	{    
 		   int32_t const numValues = static_cast<int32_t>(data.size());
-		   if(N==data.size)
+		   if(N==data.size())
 		   {
 			   std::copy(data.begin(), data.end(), Vector_Array.data());
 			}
@@ -35,13 +39,13 @@ class Vector
 			 else if(N>data.size())
 			{
 			    std::copy(data.begin(),data.end(),Vector_Array.data());
-				std::fill_n(Vector.begin()+numValues,Vector.end(),float(0));
+				std::fill(Vector_Array.begin()+numValues,Vector_Array.end(),float(0));
 
 			}
 
 			else
 			{
-			 std::copy(data.begin(),data.end()+numValues,Vector_Array.begin());
+			 std::copy(data.begin(),data.begin()+N,Vector_Array.begin());
 
 			}
 	}
@@ -90,7 +94,7 @@ class Vector
 		std::fill(Vector_Array.begin(), Vector_Array.end(), (float)0);
 		if (0 <= d && d < N)
 		{
-			Vector[d] = (float)1;
+			Vector_Array[d] = (float)1;
 		}
 	}
 
@@ -151,13 +155,13 @@ class Vector
 
 };
 
-template <int32_t N, typename T>
+template <uint32_t N, typename T>
 Vector<N, T> operator+(Vector<N, T> const& v)
 {
 	return v;
 }
 
-template <int32_t N, typename Real>
+template <uint32_t N, typename Real>
 Vector<N, Real> operator-(Vector<N, Real> const& v)
 {
 	Vector<N, Real> result;
@@ -168,42 +172,42 @@ Vector<N, Real> operator-(Vector<N, Real> const& v)
 	return result;
 }
 
-template <int32_t N, typename T>
+template <uint32_t N, typename T>
 Vector<N, T> operator+(Vector<N, T> const& v0, Vector<N, T> const& v1)
 {
 	Vector<N, T> result = v0;
 	return result += v1;
 }
 
-template <int32_t N, typename T>
+template <uint32_t N, typename T>
 Vector<N, T> operator-(Vector<N, T> const& v0, Vector<N, T> const& v1)
 {
 	Vector<N,T> result = v0;
 	return result -= v1;
 }
 
-template <int32_t N, typename T>
+template <uint32_t N, typename T>
 Vector<N,T> operator*(Vector<N, T> const& v, T scalar)
 {
 	Vector<N, T> result = v;
 	return result *= scalar;
 }
 
-template <int32_t N, typename T>
+template <uint32_t N, typename T>
 Vector<N, T> operator*(T scalar, Vector<N, T> const& v)
 {
 	Vector<N, T> result = v;
 	return result *= scalar;
 }
 
-template <int32_t N, typename T>
+template <uint32_t N, typename T>
 Vector<N, T> operator/(Vector<N, T> const& v, T scalar)
 {
 	Vector<N, T> result = v;
 	return result /= scalar;
 }
 
-template <int32_t N, typename Real>
+template <uint32_t N, typename Real>
 Vector<N, Real>& operator+=(Vector<N, Real>& v0, Vector<N, Real> const& v1)
 {
 	for (int32_t i = 0; i < N; ++i)
@@ -213,7 +217,7 @@ Vector<N, Real>& operator+=(Vector<N, Real>& v0, Vector<N, Real> const& v1)
 	return v0;
 }
 
-template <int32_t N, typename Real>
+template <uint32_t N, typename Real>
 Vector<N, Real>& operator-=(Vector<N, Real>& v0, Vector<N, Real> const& v1)
 {
 	for (int32_t i = 0; i < N; ++i)
@@ -223,7 +227,7 @@ Vector<N, Real>& operator-=(Vector<N, Real>& v0, Vector<N, Real> const& v1)
 	return v0;
 }
 
-template <int32_t N, typename Real>
+template <uint32_t N, typename Real>
 Vector<N, Real>& operator*=(Vector<N, Real>& v, Real scalar)
 {
 	for (int32_t i = 0; i < N; ++i)
@@ -234,7 +238,7 @@ Vector<N, Real>& operator*=(Vector<N, Real>& v, Real scalar)
 }
 
 
-template <int32_t N, typename Real>
+template <uint32_t N, typename Real>
 Vector<N, Real>& operator/=(Vector<N, Real>& v, Real scalar)
 {
 	if (scalar != (Real)0)
@@ -256,21 +260,21 @@ Vector<N, Real>& operator/=(Vector<N, Real>& v, Real scalar)
 }
 
 // Componentwise algebraic operations.
-template <int32_t N, typename Real>
+template <uint32_t N, typename Real>
 Vector<N, Real> operator*(Vector<N, Real> const& v0, Vector<N, Real> const& v1)
 {
 	Vector<N, Real> result = v0;
 	return result *= v1;
 }
 
-template <int32_t N, typename Real>
+template <uint32_t N, typename Real>
 Vector<N, Real> operator/(Vector<N, Real> const& v0, Vector<N, Real> const& v1)
 {
 	Vector<N, Real> result = v0;
 	return result /= v1;
 }
 
-template <int32_t N, typename Real>
+template <uint32_t N, typename Real>
 Vector<N, Real>& operator*=(Vector<N, Real>& v0, Vector<N, Real> const& v1)
 {
 	for (int32_t i = 0; i < N; ++i)
@@ -332,7 +336,7 @@ T Lenght(const Vector<N, T>& v,bool robust=false)
 }
 
 
-template <int32_t N, typename Real>
+template <uint32_t N, typename Real>
 Real Normalize(Vector<N, Real>& v, bool robust = false)
 {
 	if (robust)
@@ -411,7 +415,7 @@ T Orthonormalize(int32_t numInputs, Vector<N, T>* v, bool robust = false)
 }
 
 
-template <int32_t N, typename T>
+template <uint32_t N, typename T>
 Vector< N,T> GetOrthogonal(Vector<N, T> const& v, bool unitLength)
 {
   
@@ -449,7 +453,7 @@ Vector< N,T> GetOrthogonal(Vector<N, T> const& v, bool unitLength)
 
    }
 
-template <int32_t N, typename T>
+template <uint32_t N, typename T>
 Vector<N, T> Cross(Vector<N, T> const& v0, Vector<N, T> const& v1)
 {
 	static_assert(N == 3 || N == 4, "Dimension must be 3 or 4.");
@@ -462,7 +466,7 @@ Vector<N, T> Cross(Vector<N, T> const& v0, Vector<N, T> const& v1)
 	return result;
 }
 
-template <int32_t N, typename T>
+template <uint32_t N, typename T>
 Vector<N,T> UnitCross(Vector<N, T> const& v0, Vector<N,T> const& v1, bool robust = false)
 {
 	static_assert(N == 3 || N == 4, "Dimension must be 3 or 4.");
@@ -471,7 +475,7 @@ Vector<N,T> UnitCross(Vector<N, T> const& v0, Vector<N,T> const& v1, bool robust
 	return unitCross;
 }
 
-template <int32_t N, typename T>
+template <uint32_t N, typename T>
 T DotCross(Vector<N, T> const& v0, Vector<N, T> const& v1,
 	Vector<N, T> const& v2)
 {
@@ -479,7 +483,7 @@ T DotCross(Vector<N, T> const& v0, Vector<N, T> const& v1,
 	return DotProduct(v0, Cross(v1, v2));
 }
 
-template <int32_t N, typename Real>
+template <uint32_t N, typename Real>
 bool ComputeExtremes(int32_t numVectors, Vector<N, Real> const* v,
 	Vector<N, Real>& vmin, Vector<N, Real>& vmax)
 {
@@ -509,7 +513,7 @@ bool ComputeExtremes(int32_t numVectors, Vector<N, Real> const* v,
 }
 
 // Lift n-tuple v to homogeneous (n+1)-tuple (v,last).
-template <int32_t N, typename Real>
+template <uint32_t N, typename Real>
 Vector<N + 1, Real> HLift(Vector<N, Real> const& v, Real last)
 {
 	Vector<N + 1, Real> result;
@@ -522,7 +526,7 @@ Vector<N + 1, Real> HLift(Vector<N, Real> const& v, Real last)
 }
 
 // Project homogeneous n-tuple v = (u,v[n-1]) to (n-1)-tuple u.
-template <int32_t N, typename Real>
+template <uint32_t N, typename Real>
 Vector<N - 1, Real> HProject(Vector<N, Real> const& v)
 {
 	static_assert(N >= 2, "Invalid dimension.");
@@ -537,7 +541,7 @@ Vector<N - 1, Real> HProject(Vector<N, Real> const& v)
 // Lift n-tuple v = (w0,w1) to (n+1)-tuple u = (w0,u[inject],w1).  By
 // inference, w0 is a (inject)-tuple [nonexistent when inject=0] and w1 is
 // a (n-inject)-tuple [nonexistent when inject=n].
-template <int32_t N, typename Real>
+template <uint32_t N, typename Real>
 Vector<N + 1, Real> Lift(Vector<N, Real> const& v, int32_t inject, Real value)
 {
 	Vector<N + 1, Real> result;
@@ -558,7 +562,7 @@ Vector<N + 1, Real> Lift(Vector<N, Real> const& v, int32_t inject, Real value)
 // Project n-tuple v = (w0,v[reject],w1) to (n-1)-tuple u = (w0,w1).  By
 // inference, w0 is a (reject)-tuple [nonexistent when reject=0] and w1 is
 // a (n-1-reject)-tuple [nonexistent when reject=n-1].
-template <int32_t N, typename Real>
+template <uint32_t N, typename Real>
 Vector<N - 1, Real> Project(Vector<N, Real> const& v, int32_t reject)
 {
 	static_assert(N >= 2, "Invalid dimension.");
@@ -1073,14 +1077,14 @@ Vector<N - 1, Real> Project(Vector<N, Real> const& v, int32_t reject)
 	   return result;
  }
    
-template<typename T>  
+template<typename Real>
 bool Intersects(std::array<Vector<3, double>, 3> U,
-	std::array<Vector<3, double>, 3>V, Vector<3,T> segment[2]) const
+	std::array<Vector<3, double>, 3>V, Vector<3,Real> segment[2]) const
 {
 	// Compute the plane normal for triangle U.
-	Vector<3,T> edge1 = U[1] - U[0];
-	Vector<3,T> edge2 = U[2] - U[0];
-	Vector<3,T> normal = UnitCross(edge1, edge2);
+	Vector<3,Real> edge1 = U[1] - U[0];
+	Vector<3,Real> edge2 = U[2] - U[0];
+	Vector<3,Real> normal = UnitCross(edge1, edge2);
 
 	// Test whether the edges of triangle V transversely intersect the
 	// plane of triangle U.

@@ -1,6 +1,7 @@
 #pragma once
 #include<array>
 #include<vector>
+#include<cstdint>
 template<typename T,uint32_t Column,uint32_t Rows>
 class Matrix
 {   
