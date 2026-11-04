@@ -1,0 +1,64 @@
+# --- Build output -------------------------------------------------------------
+build/
+build-*/
+out/
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+Win32/
+ARM64/
+
+# --- CMake ---------------------------------------------------------------------
+CMakeCache.txt
+CMakeFiles/
+CMakeUserPresets.json
+cmake_install.cmake
+CTestTestfile.cmake
+Testing/
+compile_commands.json
+_deps/
+
+# --- Visual Studio -------------------------------------------------------------
+.vs/
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+*.aps
+*.ipch
+ipch/
+*.tlog
+*.lastbuildstate
+*.recipe
+*.idb
+*.enc
+*.FileListAbsolute.txt
+*.log
+
+# --- Compiler / linker artifacts ----------------------------------------------
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.exe
+*.out
+*.pdb
+*.ilk
+*.exp
+*.pch
+*.gch
+
+# --- Editors / OS --------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
