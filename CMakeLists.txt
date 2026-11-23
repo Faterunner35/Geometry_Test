@@ -13,11 +13,11 @@ endif()
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # -----------------------------------------------------------------------------
-#  Sources: everything in SegmentTest/. No file list is maintained here;
+#  Sources: everything in src/. No file list is maintained here;
 #  CONFIGURE_DEPENDS makes CMake re-glob on every build, so a file added through
 #  Visual Studio, Explorer or git is picked up automatically.
 # -----------------------------------------------------------------------------
-set(ST_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/SegmentTest)
+set(ST_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 file(GLOB_RECURSE ST_SOURCES CONFIGURE_DEPENDS
     ${ST_SRC_DIR}/*.cpp
@@ -26,7 +26,7 @@ file(GLOB_RECURSE ST_SOURCES CONFIGURE_DEPENDS
     ${ST_SRC_DIR}/*.inl)
 
 add_executable(SegmentTest ${ST_SOURCES})
-source_group(TREE ${ST_SRC_DIR} PREFIX "SegmentTest" FILES ${ST_SOURCES})
+source_group(TREE ${ST_SRC_DIR} PREFIX "src" FILES ${ST_SOURCES})
 
 if(MSVC)
     target_compile_options(SegmentTest PRIVATE /utf-8 /W3 /permissive- /Zc:__cplusplus /MP)
@@ -48,3 +48,5 @@ set_tests_properties(triangle_pairs PROPERTIES
     FAIL_REGULAR_EXPRESSION "Error")
 
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT SegmentTest)
+# Visual Studio generator: run from the repository root, so the default data/Triangles.txt is found.
+set_target_properties(SegmentTest PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})

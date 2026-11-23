@@ -210,7 +210,7 @@ Vector<N, T> operator/(Vector<N, T> const& v, T scalar)
 template <uint32_t N, typename Real>
 Vector<N, Real>& operator+=(Vector<N, Real>& v0, Vector<N, Real> const& v1)
 {
-	for (int32_t i = 0; i < N; ++i)
+	for (uint32_t i = 0; i < N; ++i)
 	{
 		v0[i] += v1[i];
 	}
@@ -220,7 +220,7 @@ Vector<N, Real>& operator+=(Vector<N, Real>& v0, Vector<N, Real> const& v1)
 template <uint32_t N, typename Real>
 Vector<N, Real>& operator-=(Vector<N, Real>& v0, Vector<N, Real> const& v1)
 {
-	for (int32_t i = 0; i < N; ++i)
+	for (uint32_t i = 0; i < N; ++i)
 	{
 		v0[i] -= v1[i];
 	}
@@ -230,7 +230,7 @@ Vector<N, Real>& operator-=(Vector<N, Real>& v0, Vector<N, Real> const& v1)
 template <uint32_t N, typename Real>
 Vector<N, Real>& operator*=(Vector<N, Real>& v, Real scalar)
 {
-	for (int32_t i = 0; i < N; ++i)
+	for (uint32_t i = 0; i < N; ++i)
 	{
 		v[i] *= scalar;
 	}
@@ -244,14 +244,14 @@ Vector<N, Real>& operator/=(Vector<N, Real>& v, Real scalar)
 	if (scalar != (Real)0)
 	{
 		Real invScalar = (Real)1 / scalar;
-		for (int32_t i = 0; i < N; ++i)
+		for (uint32_t i = 0; i < N; ++i)
 		{
 			v[i] *= invScalar;
 		}
 	}
 	else
 	{
-		for (int32_t i = 0; i < N; ++i)
+		for (uint32_t i = 0; i < N; ++i)
 		{
 			v[i] = (Real)0;
 		}
@@ -289,7 +289,7 @@ T DotProduct(const Vector<N,T>& v0, const Vector<N,T>& v1)
 {
     
 	T dot=v0[0]*v1[0];
-	for (int i = 1; i < N; i++)
+	for (uint32_t i = 1; i < N; i++)
 	{
 		dot+=v0[i]*v1[i];
 	}
@@ -342,7 +342,7 @@ Real Normalize(Vector<N, Real>& v, bool robust = false)
 	if (robust)
 	{
 		Real maxAbsComp = std::fabs(v[0]);
-		for (int32_t i = 1; i < N; ++i)
+		for (uint32_t i = 1; i < N; ++i)
 		{
 			Real absComp = std::fabs(v[i]);
 			if (absComp > maxAbsComp)
@@ -362,7 +362,7 @@ Real Normalize(Vector<N, Real>& v, bool robust = false)
 		else
 		{
 			length = (Real)0;
-			for (int32_t i = 0; i < N; ++i)
+			for (uint32_t i = 0; i < N; ++i)
 			{
 				v[i] = (Real)0;
 			}
@@ -378,7 +378,7 @@ Real Normalize(Vector<N, Real>& v, bool robust = false)
 		}
 		else
 		{
-			for (int32_t i = 0; i < N; ++i)
+			for (uint32_t i = 0; i < N; ++i)
 			{
 				v[i] = (Real)0;
 			}

@@ -1,5 +1,5 @@
 #pragma once
-#include"Geomerty.h"
+#include"Geometry.h"
 #include"Matrix.h"
 
 template<uint32_t N,typename  T>
