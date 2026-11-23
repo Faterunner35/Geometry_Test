@@ -10,13 +10,12 @@ This is early experimental code. Parts of the headers are unfinished (see *Statu
 
 | File | Contents |
 |---|---|
-| `SegmentTest/Geomerty.h` | Everything that is actually used, in namespace `Geom_Exp`: `Vector<N,T>` with arithmetic, `DotProduct`, `Cross`, `UnitCross`, `Normalize`, `Orthonormalize` and lift/project helpers; `Segment<N,T>`; `Triangle<T>`; `readTrianglesFromFile<T>()`; `GeomCore<N,T>` with segment–segment closest points (`operator()`), `Intersects()` (where triangle V's edges cross the plane of triangle U) and `TriangleIntersection()` |
-| `SegmentTest/SegmentTest.cpp` | `main()`: reads triangles, runs `TriangleIntersection` on each consecutive pair, prints the result |
-| `SegmentTest/Geometry.cpp` | Includes `Geomerty.h` only (compile check of the header) |
-| `SegmentTest/Matrix.h` | Draft `Matrix<T,Column,Rows>` template; included but not used |
-| `SegmentTest/Plane.h` | Draft `Plane` class; not included anywhere and does not compile as written |
+| `src/Geometry.h` | Everything that is actually used, in namespace `Geom_Exp`: `Vector<N,T>` with arithmetic, `DotProduct`, `Cross`, `UnitCross`, `Normalize`, `Orthonormalize` and lift/project helpers; `Segment<N,T>`; `Triangle<T>`; `readTrianglesFromFile<T>()`; `GeomCore<N,T>` with segment–segment closest points (`operator()`), `Intersects()` (where triangle V's edges cross the plane of triangle U) and `TriangleIntersection()` |
+| `src/main.cpp` | `main()`: reads triangles, runs `TriangleIntersection` on each consecutive pair, prints the result |
+| `src/Geometry.cpp` | Includes `Geometry.h` only (compile check of the header) |
+| `src/Matrix.h` | Draft `Matrix<T,Column,Rows>` template; included but not used |
+| `src/Plane.h` | Draft `Plane` class; not included anywhere and does not compile as written |
 | `data/Triangles.txt` | Sample input with five triangle pairs |
-| `SegmentTest.sln`, `SegmentTest/SegmentTest.vcxproj` | Visual Studio 2022 solution |
 | `CMakeLists.txt`, `CMakePresets.json` | CMake build (Windows/MSVC, Linux/GCC) |
 
 ## How the intersection test works
@@ -39,9 +38,7 @@ Requires a C++20 compiler (MSVC 2022, GCC ≥ 11, Clang ≥ 14). The CMake build
 
 ### Visual Studio 2022
 
-Either open `SegmentTest.sln` and build, or use *File → Open → Folder…* on the repository root (VS reads `CMakeLists.txt` and `CMakePresets.json`, presets `x64 Debug` / `x64 Release`).
-
-With the `.sln`, the program reads `D:/Triangles.txt` by default. To use the sample file, set *Project → Properties → Debugging → Command Arguments* to `$(SolutionDir)data\Triangles.txt`.
+*File → Open → Folder…* on the repository root: Visual Studio reads `CMakeLists.txt` and `CMakePresets.json` (presets `x64 Debug` / `x64 Release`). To run on the sample file, set the working directory to the repository root or pass `data\Triangles.txt` as the argument. The old `.sln`/`.vcxproj` were removed: CMake generates them when needed (`cmake -G "Visual Studio 17 2022" -B build`).
 
 ### CMake (any platform)
 
@@ -60,7 +57,7 @@ Or with presets: `cmake --preset linux-release && cmake --build --preset linux-r
 #   Windows: build\Release\SegmentTest.exe data\Triangles.txt
 ```
 
-Without an argument the program reads `D:/Triangles.txt`.
+Without an argument the program reads `data/Triangles.txt` relative to the working directory, so running it from the repository root uses the sample file.
 
 Output for the sample file:
 
@@ -76,7 +73,7 @@ Test number9Failed
 
 ## Credits
 
-Parts of `SegmentTest/Geomerty.h` are adapted from David Eberly's [Geometric Tools](https://www.geometrictools.com) (GTE): the segment–segment closest-point query (its region-based case analysis) and the structure of the triangle–triangle intersection test follow the GTE implementations. Geometric Tools is distributed under the [Boost Software License 1.0](https://www.boost.org/LICENSE_1_0.txt), which asks that its copyright notice be kept with derived code:
+Parts of `src/Geometry.h` are adapted from David Eberly's [Geometric Tools](https://www.geometrictools.com) (GTE): the segment–segment closest-point query (its region-based case analysis) and the structure of the triangle–triangle intersection test follow the GTE implementations. Geometric Tools is distributed under the [Boost Software License 1.0](https://www.boost.org/LICENSE_1_0.txt), which asks that its copyright notice be kept with derived code:
 
 > David Eberly, Geometric Tools, Redmond WA 98052 — Copyright (c) 1998-2023. Distributed under the Boost Software License, Version 1.0.
 
